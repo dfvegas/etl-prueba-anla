@@ -1,11 +1,5 @@
 -- bronze_schema.sql
 
--- 1) Crear base de datos bronze
-CREATE DATABASE bronze;
-
--- 2) Conectarse a la BD bronze
-
--- 3) Crear tabla bronce
 CREATE TABLE IF NOT EXISTS public.orders_bronze (
     row_id          BIGINT PRIMARY KEY,
     order_id        TEXT,

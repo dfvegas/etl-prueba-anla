@@ -1,11 +1,5 @@
 -- silver_schema.sql
 
--- 1) Crear base de datos silver
-CREATE DATABASE silver;
-
--- 2) Conectarse a la BD silver
-
--- 3) Crear tablas de dimensiones
 CREATE TABLE dim_customer (
     customer_key   INTEGER PRIMARY KEY,
     customer_id    TEXT NOT NULL,
