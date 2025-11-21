@@ -4,40 +4,14 @@ import os
 
 import pandas as pd
 
-from .db import get_bronze_engine
-from .validators import validate_and_clean
+from config.settings import get_bronze_engine
+from utils.validators import validate_and_clean
+from utils.constants import COLUMN_MAPPING, TABLE_NAME
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
 )
-
-# Mapeo CSV a columnas tabla bronce
-COLUMN_MAPPING = {
-    "Row ID": "row_id",
-    "Order ID": "order_id",
-    "Order Date": "order_date",
-    "Ship Date": "ship_date",
-    "Ship Mode": "ship_mode",
-    "Customer ID": "customer_id",
-    "Customer Name": "customer_name",
-    "Segment": "segment",
-    "Country": "country",
-    "City": "city",
-    "State": "state",
-    "Postal Code": "postal_code",
-    "Region": "region",
-    "Product ID": "product_id",
-    "Category": "category",
-    "Sub-Category": "subcategory",
-    "Product Name": "product_name",
-    "Sales": "sales",
-    "Quantity": "quantity",
-    "Discount": "discount",
-    "Profit": "profit",
-}
-
-TABLE_NAME = "orders_bronze"
 
 def read_csv_to_dataframe(csv_path: str) -> pd.DataFrame:
     logging.info(f"Leyendo CSV desde: {csv_path}")

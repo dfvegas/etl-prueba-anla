@@ -1,7 +1,7 @@
 import pandas as pd
 
-from etl.dimensions import build_dimensions
-from etl.facts import build_facts
+from utils.build_dimensions import build_dimensions
+from utils.build_facts import build_facts
 from .test_dimensions import _sample_bronze_df
 
 

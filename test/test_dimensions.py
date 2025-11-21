@@ -1,6 +1,6 @@
 import pandas as pd
 
-from etl.dimensions import build_dimensions
+from utils.build_dimensions import build_dimensions
 
 # Crea un DataFrame de ejemplo similar a lo que llega de DB bronze
 def _sample_bronze_df():

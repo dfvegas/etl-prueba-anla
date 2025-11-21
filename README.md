@@ -14,7 +14,13 @@ Incluye:
 
 # 1. Descripción de la solución
 
-El pipeline ETL sigue una arquitectura clásica de **Bronze → Silver**.
+El pipeline ETL sigue una arquitectura clásica de **Bronze → Silver**. La solución implementa una arquitectura modular basada en principios de diseño limpio. Cada componente del pipeline cumple una única responsabilidad (SRP – SOLID), permitiendo desacoplar la lectura, limpieza, transformación y carga de datos. El modelo Silver adopta un enfoque dimensional, empleando dimensiones con claves surrogate para garantizar estabilidad ante cambios en los identificadores naturales del dataset. La inclusión de `dim_date` responde a buenas prácticas de modelos analíticos: facilita consultas por períodos, optimiza índices y estandariza la gestión temporal. Asimismo, la dimensión geográfica se mantiene sin normalizar sus niveles internos (país, estado, ciudad) porque el dataset Superstore no presenta jerarquías complejas ni cardinalidades suficientes que justifiquen dividirla en dimensiones separadas; consolidarlas en una sola tabla evita joins innecesarios y mejora la eficiencia en consultas típicas de análisis. Finalmente, la organización del código en módulos (utils/, etl/, config/) permite reutilización, pruebas unitarias aisladas y una estructura clara, escalable y alineada con patrones comunes en proyectos ETL.
+
+La solución actual está orientada a funciones para mantenerla simple y fácil de leer.
+En un escenario real con más fuentes de datos y múltiples pipelines, evolucionaría esto hacia una arquitectura más orientada a objetos, usando:
+- Una clase base de ETL (Template Method) con los pasos extract → transform → load
+- Estrategias de validación configurables por dataset.
+- Repositorios para abstracción de acceso a datos.
 
 ## Capa Bronze
 Contiene los datos crudos provenientes del CSV descargado desde Kaggle.  
@@ -63,7 +69,7 @@ Características principales:
 ## 3.1 Crear entorno virtual
 ```bash
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
+source venv/Scripts/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 ```
 
@@ -136,7 +142,7 @@ python -m etl.etl_bronze_to_silver
 pytest -vv
 ```
 ## 7.2 ¿Qué validan los tests?
-- Que `test_etl_csv_to_bronze` valide limpieza y mapeo del CSV.
-- Que `test_dimensions` valide la creación correcta de las dimensiones.
-- Que `test_facts` valide que los hechos se construyen correctamente.
+- Que `test_etl_csv_to_bronze` valida limpieza y mapeo del CSV.
+- Que `test_dimensions` valida la creación correcta de las dimensiones.
+- Que `test_facts` valida que los hechos se construyen correctamente.
 Los tests usan dataframes pequeños y controlados (unit tests).

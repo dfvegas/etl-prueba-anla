@@ -52,7 +52,6 @@ def build_dimensions(df_bronze: pd.DataFrame):
         .reset_index(drop=True)
     )
 
-    # Logging para mostrar si hubo inconsistencias
     n_distinct_ids = raw_products["product_id"].nunique()
     n_rows_full = raw_products.drop_duplicates().shape[0]
 

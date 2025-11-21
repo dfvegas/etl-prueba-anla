@@ -3,10 +3,9 @@ import logging
 import pandas as pd
 from sqlalchemy import text
 
-from .db import get_bronze_engine
-from .db import get_silver_engine
-from .dimensions import build_dimensions
-from .facts import build_facts
+from config.settings import get_bronze_engine, get_silver_engine
+from utils.build_dimensions import build_dimensions
+from utils.build_facts import build_facts
 
 logging.basicConfig(
     level=logging.INFO,
