@@ -41,7 +41,6 @@ CREATE TABLE dim_date (
     quarter    INTEGER NOT NULL
 );
 
--- 4) Crear tablas de hechos
 CREATE TABLE fact_orders (
     order_key       INTEGER PRIMARY KEY,
     order_id        TEXT NOT NULL,
