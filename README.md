@@ -104,8 +104,8 @@ CREATE DATABASE silver;
 
 Ejecutar en psql:
 ```bash
-psql -U postgres -d bronze -f bronze_schema.sql
-psql -U postgres -d silver -f silver_schema.sql
+psql -U postgres -d bronze -f db/bronze_schema.sql
+psql -U postgres -d silver -f db/silver_schema.sql
 ```
 ---
 
