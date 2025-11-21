@@ -98,8 +98,8 @@ CREATE DATABASE silver;
 
 Ejecutar en psql:
 ```bash
-psql -U postgres -d bronze -f sql/bronze_schema.sql
-psql -U postgres -d silver -f sql/silver_schema.sql
+psql -U postgres -d bronze -f bronze_schema.sql
+psql -U postgres -d silver -f silver_schema.sql
 ```
 ---
 
@@ -108,7 +108,7 @@ psql -U postgres -d silver -f sql/silver_schema.sql
 ## 6.1 Descarga de la base de datos
 Ejecutar el archivo `download_dataset.py` para descargar el dataset.
 ```bash
-python download_dataset.py
+python etl/download_dataset.py
 ```
 Esto devuelve una ruta que usaremos en el siguiente paso. El CSV quedará almacenado en la caché local de kagglehub, por ejemplo:
 ```bash
